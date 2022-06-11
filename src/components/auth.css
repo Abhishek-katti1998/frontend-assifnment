@@ -1,0 +1,33 @@
+.MuiCard-root {
+    margin: auto;
+    margin-top: 5%;
+    width: 30%;
+    height: 500px;
+    outline: 3px solid rgba(237, 228, 228, 0.862);
+
+
+}
+
+@media only screen and (max-width: 600px) {
+    .MuiCard-root {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .MuiCard-root {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .MuiCard-root {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .MuiCard-root {
+        width: 60%;
+    }
+}

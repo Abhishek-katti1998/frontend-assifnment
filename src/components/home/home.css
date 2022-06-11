@@ -1,0 +1,42 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+
+}
+.add-btn{
+    text-decoration: none;
+    align-self: flex-start;
+    background-color: white;
+    border: none;
+    color:hsl(206deg 100% 52%);
+}
+table {
+    margin: auto;
+    margin-top: 40px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+td,
+th {
+    text-align: left;
+    padding: 20px;
+}
+th{
+   color:black;
+   opacity: 0.4;
+ font-weight: 10px;
+}
+.icons{
+/* width: 100px; */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+.icon:hover{
+    cursor: pointer;
+}
+tr:nth-child(even) {
+    background-color: rgba(234, 242, 249, 0.904);
+}

@@ -1,0 +1,6 @@
+.candidate-container{
+    margin: auto;
+    width: 50%;
+    height: 80vh;
+outline: 3px solid rgba(237, 228, 228, 0.862);
+}

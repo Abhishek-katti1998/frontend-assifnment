@@ -1,0 +1,162 @@
+p{
+    color:red;
+    align-self: flex-start;
+    position: relative;
+    bottom: 35px;
+}
+.form-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.form-auth {
+    width: 60%; 
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+
+}
+.form-control{
+     display: flex;
+    flex-direction: column; 
+  /* margin-bottom: 30px;  */
+}
+
+.errors{
+    color: red;
+    align-self: flex-start;
+    position: relative;
+    bottom: 20px;
+    
+}
+
+.label-auth{
+    align-self: flex-start;
+}
+/* .form-control{
+    display: flex;
+    flex-direction: column;
+} */
+.input-auth,
+.input-candidate,
+.select-state{
+display:block;
+width:250px;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857143;
+color:#555;
+background-color: #fff;
+border: 1px solid #ccc;
+border-radius: 4px;
+margin-bottom: 20px;
+}
+.candidate-form-container{
+    margin-top: 40px;
+}
+input:placeholder-shown
+{
+    opacity: 0.7;
+}
+
+
+.btnAuth{
+    align-self:center;
+    margin-top: 35px;
+    background-color:hsl(206deg 100% 52%) ;
+   border: none;
+   color: white;
+   border-radius: 4px;
+   width: 120px;
+   height: 40px;
+}
+button:hover{
+    cursor: pointer;
+}
+input:focus,
+.select-state:focus{
+    outline-color: hsl(206deg 100% 52%);
+}
+sub{
+    color:hsl(206deg 100% 52%);
+    align-self: flex-end;
+    position: relative;
+    /* bottom: 20px; */
+}
+
+.form-container-candidate{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.right-section,.left-section{
+    display: flex;
+    flex-direction: column;
+}
+.canidate-form-control{
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+}
+.label-candidate {
+    align-self: flex-start;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    /* right:40px; */
+    top:30px;
+}
+.create,.cancel{
+border-radius: 4px;
+width: 120px;
+height: 40px;
+}
+.create{
+background-color: hsl(206deg 100% 52%);
+color: white;
+border: none;
+}
+.cancel{
+    color:black;
+    background-color: white;
+    border:2px solid hsl(206deg 100% 52%);
+}
+#heading{
+    align-self: flex-start;
+    /* margin-left:auto ; */
+}
+.right-section h2{
+  opacity: 0;
+}
+.link{
+    text-decoration: none;
+    color:hsl(206deg 100% 52%);
+    align-self: flex-end;
+}
+.backdrop{
+    background-color: gray;
+}
+.create-disabled[disabled]{
+       background-color: hsl(206deg 100% 52%);
+        color: white;
+        opacity: 0.4;
+        border: none;
+}
+@media only screen and (max-width: 600px) {
+   input{
+       width:70%;
+   }
+}
+@media only screen and (max-width: 500px) {
+    input {
+        width: 40%;
+        display: block;
+        width: 200px;
+        
+    }
+}
