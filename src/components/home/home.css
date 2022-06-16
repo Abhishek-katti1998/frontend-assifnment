@@ -1,7 +1,7 @@
 .home-container{
     display: flex;
     flex-direction: column;
- overflow-x: auto;
+    overflow-x: auto;
 }
 .add-btn{
     text-decoration: none;
@@ -36,34 +36,14 @@ justify-content: space-between;
 }
 .icon:hover{
     cursor: pointer;
+
 }
 tr:nth-child(even) {
     background-color: rgba(234, 242, 249, 0.904);
 }
 
-/* @media only screen and (max-width: 600px)  { */
-    /* .name{ */
-        /* display: inline; */
-    /* } */
-    /* table {
-            margin: auto;
-            margin-top: 40px;
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 80%;
-        }
-    
-        td,
-        th {
-            /* text-align: left; */
-            /* padding: 2px; */
-        /* } */ 
-        /* tr{ */
-            /* margin-bottom: 40px; */
-        /* } */
-    /* .ommit{
-        display: none;
-       
-    } */
-    
-/* } */
+@media only screen and (max-width: 900px) {
+   .icon{
+    padding: 14px;
+   }
+}
