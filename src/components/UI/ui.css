@@ -88,7 +88,7 @@ sub{
 
 .form-container-candidate{
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-around;
 }
 .right-section,.left-section{
@@ -142,7 +142,7 @@ border: none;
     background-color: gray;
 }
 .create-disabled[disabled]{
-       background-color: hsl(206deg 100% 52%);
+       background-color: rgb(10, 149, 255);
         color: white;
         opacity: 0.4;
         border: none;
@@ -159,4 +159,14 @@ border: none;
         width: 200px;
         
     }
+  .right-section,
+  .left-section {
+    margin-bottom: -65px;
+  }
+}
+.css-5ir5xx-MuiLinearProgress-bar1{
+    background-color:rgb(10, 149, 255); ;
+}
+.css-1r8wrcl-MuiLinearProgress-bar2{
+    background-color:rgb(10, 149, 255); ;
 }

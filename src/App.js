@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
@@ -12,12 +11,14 @@ import { useLocation } from "react-router";
 import CandidateDetails from "./components/home/home";
 import validator from "./util/validator";
 import { signUp, login } from "./util/api/auth";
+import LinearIndeterminate from "./components/UI/loader";
 
 function App() {
   const [curLocation, setcurLocation] = useState({});
   const [token, setToken] = useState("");
   const [edit, setEdit] = useState({ edit: false, data: null });
-  const [id, setId] = useState("");
+  const [loading, setLoading] = useState(false);
+  // const [id, setId] = useState("");
   const [formValues, setFormValues] = useState({
     name: "",
     DateofBirth: "",
@@ -30,7 +31,9 @@ function App() {
   const subscibeEditHandler = (data) => {
     setEdit({ edit: true, data });
   };
-
+  const setLoadingHandler = (data) => {
+    setLoading(data);
+  };
   const autoFillForm = (data) => {
     const savedValues = {
       name: data?.name,
@@ -72,15 +75,19 @@ function App() {
   };
   const onSubmit = (values) => {
     if (values.email && values.password && values.phoneNumber) {
+      setLoading(true);
       signUp(values.email, values.password, values.phoneNumber).then((e) => {
         setToken(e.token);
+        setLoading(false);
       });
       formik.resetForm("");
       return;
     }
     if (values.email && values.password) {
+      setLoading(true);
       login(values.email, values.password).then((e) => {
         setToken(e.token);
+        setLoading(false);
       });
     }
     formik.resetForm("");
@@ -96,18 +103,9 @@ function App() {
     setcurLocation(loc);
   };
 
-  useEffect(() => {
-    ["hashchange", "load"].forEach((e) => {
-      window.addEventListener(e, function () {
-        setId(window.location.hash.slice(1));
-
-        formik.resetForm("");
-      });
-    });
-  }, []);
-
   return (
     <div className="App">
+      {loading && token ? <LinearIndeterminate /> : null}
       <BrowserRouter>
         <Routes>
           <Route
@@ -116,6 +114,7 @@ function App() {
                 formik={formik}
                 setLocationHandler={setLocationHandler}
                 token={token}
+                loading={loading}
               />
             }
             path="/login"
@@ -129,9 +128,9 @@ function App() {
                 edit={edit}
                 formValues={formValues}
                 autoFillForm={autoFillForm}
-                id={id}
-                // editData={editData}
                 resetFormValues={resetFormValues}
+                setLoadingHandler={setLoadingHandler}
+                loading={loading}
               />
             }
             path="/candidate"
@@ -142,6 +141,7 @@ function App() {
                 formik={formik}
                 setLocationHandler={setLocationHandler}
                 token={token}
+                loading={loading}
               />
             }
             path="/signUp"
@@ -152,8 +152,8 @@ function App() {
                 token={token}
                 formik={formik}
                 subscibeEditHandler={subscibeEditHandler}
-                // idSetHandler={idSetHandler}
-                id={id}
+                setLoadingHandler={setLoadingHandler}
+                loading={loading}
               />
             }
             path="/home"

@@ -3,49 +3,52 @@ import { VscEdit } from 'react-icons/vsc'
 import {AiOutlineDelete} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import {fetchCandidateDetails, updateCandidateDetails,deleteCandidateDetails } from '../../util/api/apiCalls'
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router'
 
 const CandidateDetails = (props) => {
  
     const navigate = useNavigate();
+    const location = useLocation();
     const [candidateData, setCandidateData] = useState([]);
-
-    useEffect(() => {
-      
+   const [reRender,setRerender]=useState(false)
+    useEffect(() => {   
         if (!props.token) navigate("/login");
         else {
-            fetchCandidateDetails().then(e => {
-               console.log(e)
-                setCandidateData(e.data)
+            if (candidateData.length > 0) return
+            else { 
+                props.setLoadingHandler(true)
+             fetchCandidateDetails().then(e => {
+                props.setLoadingHandler(false)
+                 setCandidateData(e.data)
                   
             })
+            }
+            
         }
-    },[window.location.hash])
+    },[reRender])
     const handleChange = (e) => {
-      
-       
         alert('do u want to change the status')
+        props.setLoadingHandler(true)
         const shortlistState= e.target.value === 'shortlist' ? true : false;
-        
         updateCandidateDetails(e.target.id,{shortlisted:shortlistState}).then(e => {
+             props.setLoadingHandler(false)
             console.log(e)
-
-        })
-       
+        })  
     }
     const editDetailsHandler = (event) => {
-        debugger;
         props.subscibeEditHandler(candidateData)
         navigate('/candidate')
     }
     const deleteDetailsHandler = (event) => {
-       
-        deleteCandidateDetails().then(e => {
-                           console.log(e)
-
+        props.setLoadingHandler(true);
+        deleteCandidateDetails(event.target.id).then(e => {
+            // console.log(e)
         })
-
+            .finally(() => {
+                setRerender(true);
+               props.setLoadingHandler(false);
+        })
     }
     return (
         <div className="home-container">
@@ -56,14 +59,14 @@ const CandidateDetails = (props) => {
                     <th>Date of Birth</th>
                     <th>Email</th>
                     <th>Result</th>
-                    <th>{ null}</th>
+                    <th className='ommit'>{ null}</th>
                 </tr>
                
                 {candidateData.candidate?.map((e, index) => {
                     return (
                     <tr key={e._id} >
-                            <td>{ index+1}</td>
-                            <td>{e.name}</td>
+                            <td className='ommit'>{ index+1}</td>
+                            <td className='name'>{e.name}</td>
                             <td>{`${new Date(e?.DateofBirth).getMonth()}/${new Date(e?.DateofBirth).getDate()}/${new Date(e?.DateofBirth).getFullYear()}`}</td>
                             <td>{e.emailAddress}</td>
                             <td>
@@ -77,7 +80,7 @@ const CandidateDetails = (props) => {
                                   <VscEdit  style={{color:'hsl(206deg 100% 52%)'}}/>
                                 </a>
                                 <a onClick={deleteDetailsHandler} className='icon' href={`#${e._id}`}>
-                            <AiOutlineDelete  style={{ color: 'hsl(206deg 100% 52%)',cursor:"pointer"}} />
+                                    <AiOutlineDelete id={e._id} style={{ color: 'hsl(206deg 100% 52%)',cursor:"pointer"}} />
                                 </a>
                             </td>
                 </tr>

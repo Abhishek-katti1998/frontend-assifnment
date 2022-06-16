@@ -4,3 +4,10 @@
     height: 80vh;
 outline: 3px solid rgba(237, 228, 228, 0.862);
 }
+@media only screen and (max-width: 500px) {
+.candidate-container {
+width: 100%;
+outline: none;
+}
+    
+}

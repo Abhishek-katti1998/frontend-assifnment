@@ -1,11 +1,11 @@
-// import { ReactDOM } from "react-dom"
-// const Loader = () => {
-//     return (<>
-//         {
-//             ReactDOM.createPortal(<div className="backdrop">
-              
-//           </div>,document.getElementById("spinner"))  
-//     }
-//     </>)
-// }
-// export default Loader;
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+
+export default function LinearIndeterminate() {
+  return (
+    <Box sx={{ width: '100%' }}>
+      <LinearProgress />
+    </Box>
+  );
+}

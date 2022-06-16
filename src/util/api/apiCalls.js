@@ -40,10 +40,10 @@ export const updateCandidateDetails = async (id, data) => {
     })
   ).json();
 };
-export const deleteCandidateDetails = async () => {
-  if (window.location.hash) {
+export const deleteCandidateDetails = async (id) => {
+  if (id) {
     return await (
-      await fetch(`${candidateUrl}/${window.location.hash.slice(1)}`, {
+      await fetch(`${candidateUrl}/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

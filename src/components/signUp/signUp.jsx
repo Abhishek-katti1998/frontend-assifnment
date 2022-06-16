@@ -3,6 +3,7 @@ import '../../components/auth.css'
 import { Card } from '@mui/material'; 
 import FormTemplate from "../UI/formTemplate";
 import { useLocation, useNavigate } from 'react-router';
+import LinearIndeterminate from '../UI/loader';
 const SignUp = (props) => {
   const location = useLocation()
   const navigate=useNavigate()
@@ -11,8 +12,9 @@ const SignUp = (props) => {
     props.setLocationHandler(location);
   },[])
     return (     
-        <Card>
-          <FormTemplate logIn={false} formik={ props.formik}/>
+      <Card>
+          {props.loading?<LinearIndeterminate />:null}
+        <FormTemplate logIn={false} formik={props.formik} loading={ props.loading} />
       </Card>
     )
 }

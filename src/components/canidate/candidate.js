@@ -6,17 +6,29 @@ import {
   updateCandidateDetails,
   createCandidateDetails,
 } from "../../util/api/apiCalls";
+
 const Candidate = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   const cancelHandler = () => {
     props.resetFormValues();
+    props.formik.resetForm("");
   };
   const createHandler = (e) => {
     if (e.target.textContent === "Edit") {
-      updateCandidateDetails(props.id, props.formik.values).then((e) => {});
+      props.setLoadingHandler(true);
+      updateCandidateDetails(
+        window.location.hash.slice(1),
+        props.formik.values
+      ).then((e) => {
+        props.setLoadingHandler(false);
+        console.log(e);
+      });
     } else {
-      createCandidateDetails(props.formik.values).then((e) => {});
+      props.setLoadingHandler(true);
+      createCandidateDetails(props.formik.values).then((e) => {
+        props.setLoadingHandler(false);
+      });
     }
   };
 
@@ -36,6 +48,7 @@ const Candidate = (props) => {
         autoFillForm={props.autoFillForm}
         formValues={props.formValues}
         id={props.id}
+        loading={props.loading}
       />
     </div>
   );

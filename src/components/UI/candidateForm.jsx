@@ -9,18 +9,16 @@ const CandidateForm = (props) => {
         if (!props.formik.isValid) {
             creatBtnClass='create-disabled'
         }
-    //   window.history.pushState(null, '', `#${id}`);
-        // if(window.location.hash)setId(window.location.hash.slice(1))
-        if (props.edit.edit && props.id) {
-            const [editData] = props.edit.data?.candidate?.filter(e => (e._id === props.id))
+        if (props.edit.edit ) {
+            const [editData] = props.edit.data?.candidate?.filter(e => (e._id === window.location.hash.slice(1)))
             props.autoFillForm(editData);
         }
-    }, [props.id])
+    }, [window.location.hash])
     return (
         <div className="candidate-form-container">
             <form className="form-container-candidate" onSubmit={ props.formik.handleSubmit}>
                 <div className='left-section'>
-                    <h2 id='heading'>{props.formValues.name?'Edit Candidate':'Create Candidate'}</h2>
+                    <h2 id='heading'>{props.edit.edit && props.formValues?.name?'Edit Candidate':'Create Candidate'}</h2>
                     <div className="canidate-form-control">
                             <label className='label-candidate'>Name</label>
                             <input placeholder="enter your name" className="input-candidate"
@@ -85,8 +83,8 @@ const CandidateForm = (props) => {
        
                     </div>
                      <div className="buttons">
-                    <button type="reset"   onClick={props.cancelHandler} name='cancel' className='cancel'>Cancel</button>
-                        <button disabled={!props.formik.isValid} onClick={props.createHandler} type='button' name='create' className={creatBtnClass}>{props.formValues.name?'Edit':'Create'}</button>
+                    <button style={!Object.values(props.formik.values).join('')?{opacity:'0.5',cursor:'not-allowed'}:null}    type="reset"   onClick={props.cancelHandler} name='cancel' className='cancel'>Cancel</button>
+                        <button style={!props.formik.isValid || (!props.edit.edit && !Object.values(props.formik.values).join('')) ||props.loading?{opacity:'0.5',cursor:'not-allowed'}:null}  onClick={props.createHandler} type='button' name='create' className={creatBtnClass}>{props.edit.edit && props.formValues?.name?'Edit':'Create'}</button>
                 </div>
                 </div>
                
