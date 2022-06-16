@@ -14,7 +14,7 @@ const SignUp = (props) => {
     return (     
       <Card>
           {props.loading?<LinearIndeterminate />:null}
-        <FormTemplate logIn={false} formik={props.formik} loading={ props.loading} />
+        <FormTemplate logIn={false} formik={props.formik} loading={props.loading} err={props.err } />
       </Card>
     )
 }

@@ -99,6 +99,8 @@ sub{
     display: flex;
     flex-direction: column;
     height: 80px;
+    position: relative;
+    z-index: 2;
 }
 .label-candidate {
     align-self: flex-start;

@@ -18,6 +18,7 @@ function App() {
   const [token, setToken] = useState("");
   const [edit, setEdit] = useState({ edit: false, data: null });
   const [loading, setLoading] = useState(false);
+  const [err, setError] = useState('');
   // const [id, setId] = useState("");
   const [formValues, setFormValues] = useState({
     name: "",
@@ -86,6 +87,10 @@ function App() {
     if (values.email && values.password) {
       setLoading(true);
       login(values.email, values.password).then((e) => {
+        console.log(e);
+        if (e.status === 'fail') {
+          setError('Something went wrong')
+        }
         setToken(e.token);
         setLoading(false);
       });
@@ -115,6 +120,7 @@ function App() {
                 setLocationHandler={setLocationHandler}
                 token={token}
                 loading={loading}
+                err={err}
               />
             }
             path="/login"
@@ -142,6 +148,7 @@ function App() {
                 setLocationHandler={setLocationHandler}
                 token={token}
                 loading={loading}
+                err={err}
               />
             }
             path="/signUp"

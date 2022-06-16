@@ -1,7 +1,7 @@
 .home-container{
     display: flex;
     flex-direction: column;
-
+ overflow-x: auto;
 }
 .add-btn{
     text-decoration: none;
@@ -40,11 +40,12 @@ justify-content: space-between;
 tr:nth-child(even) {
     background-color: rgba(234, 242, 249, 0.904);
 }
-@media only screen and (max-width: 600px)  {
-    .name{
+
+/* @media only screen and (max-width: 600px)  { */
+    /* .name{ */
         /* display: inline; */
-    }
-    table {
+    /* } */
+    /* table {
             margin: auto;
             margin-top: 40px;
             font-family: arial, sans-serif;
@@ -55,14 +56,14 @@ tr:nth-child(even) {
         td,
         th {
             /* text-align: left; */
-            padding: 2px;
-        }
-        tr{
+            /* padding: 2px; */
+        /* } */ 
+        /* tr{ */
             /* margin-bottom: 40px; */
-        }
+        /* } */
     /* .ommit{
         display: none;
        
     } */
     
-}
+/* } */

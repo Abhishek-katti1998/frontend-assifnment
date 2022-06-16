@@ -19,7 +19,7 @@ const LogInForm = (props) => {
   },[props.token])
     return (<Card>
         {props.loading?<LinearIndeterminate />:null}
-        <FormTemplate logIn={true} formik={props.formik} loading={props.loading } />
+        <FormTemplate logIn={true} formik={props.formik} loading={props.loading} err={props.err} />
     </Card>)
 
 }

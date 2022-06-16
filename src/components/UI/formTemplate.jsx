@@ -30,7 +30,8 @@ const FormTemplate = (props) => {
                     </div>
                 <Link className='link' to={`${location.pathname==='/signUp'?'/login':'/signUp'}`}>{location.pathname==='/signUp'?'Login': 'SignUp'}</Link>
                 </div>
-                <button style={props.loading?{opacity:'0.5',cursor:'not-allowed'}:null} onClick={props.handleSubmit} type='submit' name={props.logIn ? 'LogIn' : 'SignUp'} className='btnAuth'>{props.logIn ? 'LogIn' : 'SignUp'}</button>
+                <button style={props.loading ? { opacity: '0.5', cursor: 'not-allowed' } : null} onClick={props.handleSubmit} type='submit' name={props.logIn ? 'LogIn' : 'SignUp'} className='btnAuth'>{props.logIn ? 'LogIn' : 'SignUp'}</button>
+                <p style={{color:'red',position:'relative',top:'10px',left:'52px'}}>{ props.err?`${props.err} :(`:null}</p>                
             </form>
         
         </div>
